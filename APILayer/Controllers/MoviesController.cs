@@ -73,7 +73,7 @@ namespace APILayer.Controllers
         }
 
 
-        [HttpPost("{AddRange}")]
+        [HttpPost("AddRange")]
         public async Task<IActionResult> addRangeMovie([FromForm] List<MovieDTO> movieDTOs)
         {
 
@@ -129,19 +129,18 @@ namespace APILayer.Controllers
 
             movieDTO.poster.CopyTo(dataStream);
 
-            Movie movie = new Movie()
-            {
-                Title = movieDTO.Title,
-                genereId = movieDTO.genereId,
-                StoreLine = movieDTO.StoreLine,
-                Rate = movieDTO.Rate,
-                year = movieDTO.year,
-                poster = dataStream.ToArray()
-            };
+     
+                query.Title = movieDTO.Title,
+                query.genereId = movieDTO.genereId,
+                query.StoreLine = movieDTO.StoreLine,
+                query.Rate = movieDTO.Rate,
+                query.year = movieDTO.year,
+                query.poster = dataStream.ToArray()
+      
 
-            _MovieRepository.update(movie);
+            _MovieRepository.update(query);
 
-            return Ok(movie);
+            return Ok(query);
 
         }
 
