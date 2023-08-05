@@ -112,15 +112,11 @@ namespace APILayer.Controllers
                 return BadRequest("this genere is null");
 
 
-            Genere genere = new Genere()
-            {
-                Name = genereDTO.Name,
+            query.Name=genereDTO.Name;
 
-            };
+            _GenereRepository.update(query);
 
-            _GenereRepository.update(genere);
-
-            return Ok(genere);
+            return Ok(query);
 
         }
 
